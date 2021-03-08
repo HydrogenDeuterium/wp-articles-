@@ -6,7 +6,7 @@
 
 对于powershell/pwsh，类似的文件目录为`~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1`可以调用 $profile 来获取这个地址。
 
-```
+```powershell
 notepad $profile
 ```
 
@@ -14,7 +14,7 @@ notepad $profile
 
 然后写入想要的任何预设启动脚本，例如：
 
-```
+```powershell
 set-alias np notepad++.exe;
 set-alias ll ls;
 ```
@@ -24,4 +24,3 @@ set-alias ll ls;
 如果安全等级太高，启动的时候可能报错。使用`Get-ExecutionPolicy`来查看安全等级，默认为“restrict”则代表禁止一切脚本（ps1文件的执行）。
 
 `Set-ExecutionPolicy remotesigned`，可以将其设置为允许运行所有本地脚本，远程脚本需要数字签名（确保内容没有被篡改），这样就能愉快的设置别名（和其它预处理脚本）了！
-
