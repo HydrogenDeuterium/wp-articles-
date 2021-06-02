@@ -1,9 +1,9 @@
 # golang-1
 
-
 ## 安装
 
 我使用 chocolatey 的包管理器安装：
+
 ```powershell
 choco install golang -y
 ```
