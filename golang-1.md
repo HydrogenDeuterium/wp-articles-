@@ -33,14 +33,17 @@ go env -w GOPROXY=https://goproxy.cn,direct
 初始化成功后，会生成"go.mod"文件来存放需求信息。
 
 ## gin 和其它模块的安装
+
 使用`go get -u github.com/gin-gonic/gin`。这一步需要GO111MODULE设置为“on”才能正常运行。
 运行成功后，会在"go.mod"文件中写入需求，并且生成"go.sum"文件。此文件中每一行包含一组【包名称 包版本 包的哈希】。
 注意：此过程需要管理员权限，否则报错类似如下：
-```
+
+```powershell
 github.com/gin-gonic/gin@v1.6.3: verifying module: github.com/gin-gonic/gin@v1.6.3: open C:\Program Files\Go\pkg\sumdb\sum.golang.org\latest: Access is denied.
 ```
 
 ## 关于 mysql
+
 记得安装驱动，安装后要使用`import _ "github.com/go-sql-driver/mysql"`来进行初始化。
 格式是 import alias pack,alias 用于设置别名，类似于 py 的 import pack as alias.
 下划线在 go 里被丢弃，所以这时候包里的定义 什么都获取不到，可以防止误用。
@@ -50,6 +53,7 @@ github.com/gin-gonic/gin@v1.6.3: verifying module: github.com/gin-gonic/gin@v1.6
 不要用 defer 来把默认输出放在最前面，否则最后会给俩 json，实际应用接受到会报错
 
 ## 关于密码验证
+
 首先显然不能直接存明文密码，要存密码的某种哈希。这个哈希最好加盐。
 
 `bcrypt.GenerateFromPassword(password []byte, cost int)`函数是一种加盐的哈希实现，可以安全的存密码。
@@ -61,6 +65,7 @@ $2a$10$Ejr3lUXe6tikizjuItZ.E.8gA2J8bfhtbwDKWBThO2HRNdbIlmV..
 想要验证密码和哈希结果是否匹配，要使用`CompareHashAndPassword(hashedPassword, password []byte)`来计算。如果匹配这个函数返回空指针，否则返回报错。
 
 ## 关于多文件运行
+
 Goland 里不止一个文件的时候运行配置里种类要选包或者目录，不能选文件。命令行里`go build`的时候要把所有文件都写上。
 
 ## 关于 token
