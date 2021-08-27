@@ -1,5 +1,8 @@
 # 第一个 js 脚本
 
+> 这是一篇旧文，写于 2021 年 1 月 25 日。
+> 本文最后更新于 2021 年 8 月 19 日。
+
 我对 js 历来是深恶痛绝，主要反感的地方在于其糟糕的语言设计——主要是弱类型导致的大量意料外行为，这甚至逼迫大家都不得不用三等于。
 
 比较常见的所谓“三位一体”这里不进一步重复，给大家分享一个更加令人意外的。
@@ -20,22 +23,22 @@
 
 ```javascript
 let table=document.getElementsByTagName("table")[0];
-//去除流水号
+// 去除流水号
 table.getElementsByTagName("th"）[0].parentNode.remove();
-//去除成功时间
+// 去除成功时间
 if (table.getElementsByClassName("rbox-label"）[0]!==undefined){
     table.getElementsByClassName("rbox-label")[0].parentNode.remove();}
 ```
 
 先看脚本的第一部分，找到指定的表，然后清除第一行和指定行。
-总的来说这里需要的是`getElementBy***`系列方法来找到需要的 html 标签，然后 `parentNode` 来获取父节点，`remove`来删除。
+总的来说这里需要的是 `getElementBy***` 系列方法来找到需要的 html 标签，然后 `parentNode` 来获取父节点，`remove`来删除。
 
 流水号这部分现在的实现是盲目删除第一个，理论上不太好，应该判断一下这一行的内容再说的，但是我对 html 的表格，js 的文本判断等内容都不熟悉，最重要的原因是现在这部分也可以用，所以暂且就先这样了。
 
 后面去除成功时间的部分，蠢蠢的先判断存在再删除，理论上用 try 可能好，但是最后也懒得改了。
 
 ```js
-//缩小
+// 缩小
 document.getElementsByTagName("body")[0].style.zoom = 0.80;
 ```
 
@@ -55,7 +58,7 @@ setTimeout((function(){document.getElementById("onlineService").remove();}),300)
 
 俗话说得好，如果你有一个问题，当你考虑多线程（还是进程？这方面我没什么研究）的时候，很好，你有了两个问题了。但转念一想，既然网页的交互具有很高的实时性，应当不会容许一个地方卡住导致网页无法继续运行。
 
-这也就意味着，js 的语言设计者应该不会蠢到在这个地方卡住（如果会的话，那么毫无疑问这玩意又会多一个黑点了）。找了一下有这个 `setTimeout()`函数，试了一下果然可以。
+这也就意味着，js 的语言设计者应该不会蠢到在这个地方卡住（如果会的话，那么毫无疑问这玩意又会多一个黑点了）。找了一下有这个 `setTimeout()` 函数，试了一下果然可以。
 
 ```js
 //打印
