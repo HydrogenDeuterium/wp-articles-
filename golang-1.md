@@ -1,5 +1,8 @@
 # golang-1
 
+> 这是一篇旧文，写于 2021 年 3 月 4 日。
+> 最后更新于 2012 年 9 月 19 日。
+
 ## 安装
 
 我使用 chocolatey 的包管理器安装：
@@ -14,6 +17,14 @@ choco install golang -y
 
 输入`go version`，得到`go1.15.8 windows/amd64`或者类似的反馈，说明安装成功。
 
+---
+
+更新：
+
+- 现在更加建议使用 winget 安装；
+- 现在 go 的版本号达到了 go1.17。
+
+
 ## 设置包管理和代理
 
 因为 go 是 google 的服务，在网络环境比较魔法的情况下下包体验不佳，需要设置代理。
@@ -26,6 +37,11 @@ go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
 可以使用`go env`命令检查是否修改成功。这个命令也可以修改一些其它环境，此处不赘述。
+
+---
+
+更新：随着 go 的版本发展，现在这个“模块”功能已经是自动开启的了。
+补充：为什么这个参数名字这么诡异呢，因为这个功能是从 go1.11 才开始加入的。
 
 ## 创建mod文件
 
@@ -60,9 +76,9 @@ github.com/gin-gonic/gin@v1.6.3: verifying module: github.com/gin-gonic/gin@v1.6
 
 加盐之后，即使对于相同的 password，生成的哈希也不同。哈希结果大概长这样（里面包含了盐和哈希两部分）：
 
-$2a$10$Ejr3lUXe6tikizjuItZ.E.8gA2J8bfhtbwDKWBThO2HRNdbIlmV..
+> $2a$10$Ejr3lUXe6tikizjuItZ.E.8gA2J8bfhtbwDKWBThO2HRNdbIlmV..
 
-想要验证密码和哈希结果是否匹配，要使用`CompareHashAndPassword(hashedPassword, password []byte)`来计算。如果匹配这个函数返回空指针，否则返回报错。
+想要验证密码和哈希结果是否匹配，使用 `CompareHashAndPassword(hashedPassword, password []byte)` 来计算。如果匹配这个函数返回空指针，否则返回报错。
 
 ## 关于多文件运行
 
