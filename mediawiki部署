@@ -1,0 +1,20 @@
+# mediawiki部署
+
+> 本文最后更新于 2023 年 3 月 17 日。
+
+## 拉取镜像
+`sudo docker pull mediawiki:stable`
+
+## 启动服务
+
+`sudo docker run -d --restart=always -e TZ="Asia/Shanghai" --link {mysql} -p 80:80 --name mediawiki mediawiki:stable`
+其中 mysql 为数据库 container 的名称。
+
+## 获取 LocalSettings.php
+
+访问 localhost:80，在网页进行配置。配置完成后下载 LocalSettings.php 文件
+
+```
+sudo docker cp LocalSettings.php {container}:/var/www/html/
+```
+
